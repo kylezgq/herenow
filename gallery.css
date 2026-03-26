@@ -1,0 +1,206 @@
+/* Gallery page - 2 rows x 4 columns layout */
+
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12vh 40px 30px 7.5%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 100;
+    background: linear-gradient(to bottom, #3d3229 0%, transparent 100%);
+}
+
+.back-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link:hover {
+    color: var(--text-hover);
+}
+
+.gallery-title {
+    display: none;
+}
+
+.gallery-title-left {
+    display: none;
+}
+
+.gallery-container {
+    padding: 20vh 10% 40px 7.5%;
+    max-width: none;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Photo grid - 2 rows x 4 columns, left aligned */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    column-gap: 20px;
+    row-gap: 50px;
+    align-items: start;
+    justify-items: start;
+    width: 100%;
+}
+
+.grid-item {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.grid-item img {
+    display: block;
+    max-width: 100%;
+    max-height: 280px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.grid-item:hover img {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Optional: photo title overlay on hover */
+.grid-item::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 12px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    color: var(--text-color);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.grid-item:hover::after {
+    opacity: 1;
+}
+
+/* Pagination - aligned left with new format */
+.pagination {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    margin-top: 50px;
+    padding-bottom: 40px;
+    margin-left: 0;
+}
+
+.page-btn,
+.page-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: auto;
+    height: auto;
+    padding: 0 4px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    color: var(--text-hover);
+}
+
+.page-btn.active {
+    color: var(--text-hover);
+    font-weight: bold;
+}
+
+.page-separator {
+    cursor: default;
+    opacity: 0.4;
+    padding: 0 2px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .photo-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+}
+
+@media (max-width: 900px) {
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .grid-item img {
+        max-height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 10vh 20px 20px 2.5%;
+    }
+
+    .gallery-container {
+        padding: 18vh 5% 40px 2.5%;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 15px;
+    }
+
+    .grid-item {
+        max-width: 180px;
+    }
+
+    .grid-item img {
+        max-height: 220px;
+    }
+
+    .page-btn,
+    .page-separator {
+        font-size: 10px;
+    }
+}
