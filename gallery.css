@@ -1,0 +1,238 @@
+/* Gallery page - 3 rows layout with adaptive columns */
+
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12vh 40px 30px 7.5%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 100;
+    background: linear-gradient(to bottom, #4a3f35 0%, transparent 100%);
+}
+
+.back-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link:hover {
+    color: var(--text-hover);
+}
+
+.gallery-title {
+    display: none;
+}
+
+.gallery-title-left {
+    display: none;
+}
+
+.gallery-container {
+    padding: 20vh 10% 40px 7.5%;
+    max-width: none;
+    margin: 0;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Photo grid - 3 rows adaptive layout */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(3, auto);
+    column-gap: 16px;
+    row-gap: 24px;
+    align-items: start;
+    justify-items: center;
+    width: auto;
+}
+
+.grid-item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Slightly larger images */
+.grid-item img {
+    display: block;
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Portrait images - center horizontally and vertically within their cell */
+.grid-item.portrait {
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-item.portrait img {
+    max-height: 200px;
+}
+
+/* Landscape images - align to top, center horizontally */
+.grid-item.landscape {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.grid-item.landscape img {
+    max-height: 120px;
+}
+
+.grid-item:hover img {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Photo title overlay on hover */
+.grid-item::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 12px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    color: var(--text-color);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.grid-item:hover::after {
+    opacity: 1;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    margin-top: 30px;
+    padding-bottom: 40px;
+    margin-left: 0;
+}
+
+.page-btn,
+.page-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: auto;
+    height: auto;
+    padding: 0 4px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    color: var(--text-hover);
+}
+
+.page-btn.active {
+    color: var(--text-hover);
+    font-weight: bold;
+}
+
+.page-separator {
+    cursor: default;
+    opacity: 0.4;
+    padding: 0 2px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .photo-grid {
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: repeat(3, auto);
+    }
+}
+
+@media (max-width: 900px) {
+    .photo-grid {
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(4, auto);
+    }
+
+    .grid-item img {
+        max-height: 130px;
+    }
+
+    .grid-item.portrait img {
+        max-height: 170px;
+    }
+
+    .grid-item.landscape img {
+        max-height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 10vh 20px 20px 2.5%;
+    }
+
+    .gallery-container {
+        padding: 18vh 5% 40px 2.5%;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(6, auto);
+        gap: 12px;
+    }
+
+    .grid-item img {
+        max-height: 120px;
+    }
+
+    .grid-item.portrait img {
+        max-height: 160px;
+    }
+
+    .grid-item.landscape img {
+        max-height: 90px;
+    }
+
+    .page-btn,
+    .page-separator {
+        font-size: 10px;
+    }
+}
