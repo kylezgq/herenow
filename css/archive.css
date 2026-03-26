@@ -1,0 +1,141 @@
+/* Archive page - Tree list styles */
+
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12vh 40px 30px 7.5%;
+    display: flex;
+    align-items: flex-start;
+    z-index: 100;
+    background: linear-gradient(to bottom, #3d3229 0%, transparent 100%);
+}
+
+.back-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link:hover {
+    color: var(--text-hover);
+}
+
+.page-title {
+    display: none;
+}
+
+.archive-container {
+    padding: 20vh 40px 80px 7.5%;
+    max-width: none;
+    margin: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100vh;
+}
+
+/* Tree list styles */
+.tree-list {
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 2.2;
+}
+
+.tree-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tree-item {
+    position: relative;
+}
+
+.tree-item-photographer {
+    margin-bottom: 6px;
+}
+
+.tree-item-series {
+    padding-left: 24px;
+    position: relative;
+}
+
+/* Guide lines like code indentation - more visible */
+.tree-item-series::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #6b5d4d;
+}
+
+.tree-item-series::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 16px;
+    width: 12px;
+    height: 1px;
+    background: #6b5d4d;
+}
+
+/* Last item doesn't extend the vertical line */
+.tree-item-series:last-child::before {
+    height: 17px;
+}
+
+.tree-photographer {
+    color: var(--text-color);
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.tree-series-link {
+    color: #a09080;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 13px;
+}
+
+.tree-series-link:hover {
+    color: var(--text-hover);
+}
+
+.tree-photo-count {
+    color: #756b5e;
+    font-size: 11px;
+    margin-left: 8px;
+}
+
+/* Source badge - hidden */
+.source-badge {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 10vh 20px 20px 2.5%;
+    }
+
+    .archive-container {
+        padding: 18vh 20px 60px 2.5%;
+    }
+
+    .tree-list {
+        font-size: 12px;
+    }
+
+    .tree-photographer,
+    .tree-series-link {
+        font-size: 12px;
+    }
+}
