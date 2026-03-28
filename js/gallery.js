@@ -30,7 +30,7 @@ function renderGallery() {
     totalPhotos = series.photos;
 
     // Update page title only
-    document.title = `${series.title} - ${photographer.name} - Magnum Index`;
+    document.title = `${series.title} - ${photographer.name}`;
 
     // Render current page
     renderCurrentPage();
